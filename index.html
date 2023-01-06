@@ -13,13 +13,16 @@
         Your browser does not support the video tag.
       </video>
       <div>
+        <div class="progress">
+          <div class="progressFilled"></div>
+        </div>
         <input type="button" value="▶" id="playButton">
-        <input type="range" name="volume" id="volume" min="0" max="100" step="2">
-        <input type="range" name="playBack" id="playBack" min="0" max="100" step="10">  
+        <input type="range" name="volume" id="volume" min="0.0" max="1.0" step="0.05" value="0.75">
+        <input type="range" name="playBack" id="playBack" min="0.5" max="2.0" step="0.5" value="1">  
    
-        <input type="button" data-skip="forward" value="&#x23f4&#x23f4 2">
-        <input type="button" data-skip="rewind" value="&#x23f5&#x23f5 2">
-        <input type="button" value="&#x26F6 ">
+        <input type="button" data-skip="-2" value="&#x23f4&#x23f4 2">
+        <input type="button" data-skip="2" value="&#x23f5&#x23f5 2">
+        <input type="button" value="&#x26F6" id="fullScreen">
         </div>
       <script src="main.js"></script>
 </body>
