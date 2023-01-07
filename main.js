@@ -46,6 +46,11 @@ function progressBarHandler(){
      let percent = (video.currentTime/video.duration)*100
      progressBar.style.flexBasis = `${percent}%`
      progressBar.style.width=`${percent}%`
+    
+}
+function progressBarUpdate(e){
+   let time=(e.offsetX/progressBar.offsetWidth)*video.duration;
+   video.currentTime = time;
 }
 video.addEventListener("click", PlayPause)
 playButton.addEventListener("click", PlayPause)
@@ -56,3 +61,5 @@ skip.forEach(btn => btn.addEventListener("click", skipSecs))
 volume.addEventListener("change", VolumeRangleSlider)
 playBack.addEventListener("change",playbackRangleSlider)
 progressBar.addEventListener("change", progressBarHandler)
+video.addEventListener("timeupdate", progressBarHandler)
+progressBar.addEventListener("click", progressBarUpdate)
