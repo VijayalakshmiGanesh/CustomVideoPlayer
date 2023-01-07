@@ -1,12 +1,50 @@
+body{
+    background: rgb(230,173,223);
+background: radial-gradient(circle, rgba(230,173,223,0.5217437316723564) 0%, rgba(255,123,254,0.36207986612613796) 51%, rgba(251,233,89,0.49653364763874297) 100%);
+}.video-controls{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    border: 3px solid black;
+}
 .progress{
-    display: flexbox;
-    width: 100%;
+    /* width: 56.2%; */
+    text-align: center;
     background-color: grey;
+    margin: 1.2rem 0 0;
+    
+}
+h1{
+    text-align: center;
+    color: #9a3e54;
 }
 .progressFilled{
-    background-color: blueviolet;
+    /* background: rgb(255,136,106);
+background: linear-gradient(124deg, rgba(255,136,106,0.7542367288712359) 0%, rgba(227,44,88,0.5441526952577906) 100%, rgba(255,177,153,0.8354692218684349) 100%); */
+    background: rgb(255,136,106);
+background: linear-gradient(124deg, rgba(255,136,106,1) 0%, rgba(227,44,88,0.8634804263502276) 100%, rgba(255,177,153,1) 100%);
     width: 0%;
-    flex: 0;
-    flex-basis: 0%;
     height: 2rem;
 }
+input{
+    width: 100%;background-color: inherit;
+    /* background-color: rgba(255, 255, 255, 0.777); */
+    /* background: rgba(220, 220, 220, 0.337); */
+    font-size: 1.2rem;
+    border: 0.1px solid black;
+    border-collapse: collapse;
+    font-weight: 600;
+    color: #9a3e54;
+    cursor: pointer;
+}
+
+video{
+    width: 100%;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+}
+
