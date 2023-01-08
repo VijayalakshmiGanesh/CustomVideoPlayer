@@ -4,8 +4,11 @@ let volume = document.querySelector("#volume")
 let playBack = document.querySelector("#playBack")
 let skip = document.querySelectorAll('[data-skip]')
 let fullScreen = document.querySelector("#fullScreen")
+let progress= document.querySelector(".progress")
 let progressBar = document.querySelector(".progressFilled")
 let fullScreenFlag = false;
+let mousemoveFlag= false;
+
 function PlayPause(){
      video.paused? video.play(): video.pause()
 }
@@ -13,6 +16,7 @@ function PlayPause(){
 function updateButton(){
      video.paused?playButton.value="▶":playButton.value="❚❚"
 }
+
 function MakeFullScreen(){
      if(!fullScreenFlag)
           video.requestFullscreen();
@@ -26,15 +30,16 @@ function MakeFullScreen(){
               } else if (video.webkitExitFullscreen) {
                video.webkitExitFullscreen();
               }
-     }
-          
+          }     
      fullScreenFlag = !fullScreenFlag
      console.log(fullScreenFlag)
      console.log(video.exitFullscreen)
 }
+
 function VolumeRangleSlider(e){
     video.volume=this.value
 }
+
 function playbackRangleSlider(e){
      video.playbackRate=this.value
  }
@@ -42,24 +47,34 @@ function playbackRangleSlider(e){
  function skipSecs(){
      video.currentTime+=parseFloat(this.dataset.skip)
  }
+
 function progressBarHandler(){
      let percent = (video.currentTime/video.duration)*100
-     progressBar.style.flexBasis = `${percent}%`
-     progressBar.style.width=`${percent}%`
-    
+     progressBar.style.width=`${percent}%`   
 }
+
 function progressBarUpdate(e){
-   let time=(e.offsetX/progressBar.offsetWidth)*video.duration;
-   video.currentTime = time;
+   let Updatetime=(e.offsetX/progress.offsetWidth)*video.duration;
+   video.currentTime = Updatetime;
 }
+
 video.addEventListener("click", PlayPause)
-playButton.addEventListener("click", PlayPause)
 video.addEventListener("play", updateButton)
 video.addEventListener("pause", updateButton)
+video.addEventListener("timeupdate", progressBarHandler)
+
+playButton.addEventListener("click", PlayPause)
 fullScreen.addEventListener("click",MakeFullScreen)
 skip.forEach(btn => btn.addEventListener("click", skipSecs))
+
 volume.addEventListener("change", VolumeRangleSlider)
 playBack.addEventListener("change",playbackRangleSlider)
-progressBar.addEventListener("change", progressBarHandler)
-video.addEventListener("timeupdate", progressBarHandler)
-progressBar.addEventListener("click", progressBarUpdate)
+
+progress.addEventListener("click", progressBarUpdate)
+progress.addEventListener("mousemove", () => {
+     if(mousemoveFlag)  progressBarUpdate(e)})
+progress.addEventListener("mouseup", ()=> mousemoveFlag = false)
+progress.addEventListener("mousedown", () => mousemoveFlag= true)
+
+
+
